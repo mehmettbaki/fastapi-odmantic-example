@@ -15,15 +15,7 @@ app = FastAPI()
 
 engine = AIOEngine()
 
-instances = [
-    Tree(name="HarperCollins", average_size=1989, discovery_year=1995),
-    Tree(name="Hachette Livre", average_size=1826, discovery_year=2001),
-    Tree(name="Lulu", discovery_year=2002)
-]
-
-
-engine.save_all(instances)
-    
+  
     
 @app.post("/trees/", response_model=Tree)
 async def postTree( tree : Tree):

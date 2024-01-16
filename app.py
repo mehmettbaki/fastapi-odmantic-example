@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from fastapi import FastAPI, HTTPException
 
-from odmantic import AIOEngine,  Model, ObjectId
+from odmantic import AIOEngine, Model, ObjectId
 
 
 class Tree(Model):
@@ -15,12 +15,12 @@ app = FastAPI()
 
 engine = AIOEngine()
 
-  
-    
+
 @app.post("/trees/", response_model=Tree)
-async def postTree( tree : Tree):
+async def postTree(tree: Tree):
     await engine.save(tree)
     return tree
+
 
 @app.put("/trees/", response_model=Tree)
 async def create_tree(tree: Tree):
@@ -47,10 +47,8 @@ async def get_tree_by_id(id: ObjectId):
         raise HTTPException(404)
     return tree
 
- 
- 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app=app, port=8080)
-   
-    
